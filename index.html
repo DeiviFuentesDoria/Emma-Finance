@@ -240,7 +240,9 @@ function seedData(){
     movimientos:[],
     traspasos:[],
     usuarios:[
-      {user:"admin", hash:"240be518fabd2724ddb6f04eeb1da5967448d7e831c08c8fa822809f74c720a9", rol:"Administrador"}
+      {user:"admin", hash:"240be518fabd2724ddb6f04eeb1da5967448d7e831c08c8fa822809f74c720a9", rol:"Administrador"},
+      /* Usuario de validación del prototipo — eliminar desde 6.1 Usuarios al terminar la fase de pruebas */
+      {user:"prueba", hash:"3babcf803cae747863a11ff2c2d6c0312c5f367ff340cca4d50c0f7242094cce", rol:"Operativo"}
     ]
   };
 }
@@ -257,6 +259,9 @@ function loadState(){
       const st = JSON.parse(raw);
       if(!st.usuarios || !st.usuarios.length){
         st.usuarios = [{user:"admin", hash:"240be518fabd2724ddb6f04eeb1da5967448d7e831c08c8fa822809f74c720a9", rol:"Administrador"}];
+      }
+      if(!st.usuarios.some(x=>x.user==="prueba")){
+        st.usuarios.push({user:"prueba", hash:"3babcf803cae747863a11ff2c2d6c0312c5f367ff340cca4d50c0f7242094cce", rol:"Operativo"});
       }
       return st;
     }
